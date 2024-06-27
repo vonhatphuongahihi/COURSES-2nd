@@ -1,0 +1,40 @@
+@startuml
+|N| Nhà cung cấp
+|G| Giao diện tương tác nhà cung cấp
+|H| Dịch vụ giao hàng
+|V| Điều phối viên nhà cung cấp
+|K| Dịch vụ kho hàng
+|N|
+start
+:Yêu cầu lệnh giao hàng mới;
+|G|
+:Gửi yêu cầu của nhà cung cấp;
+|V|
+:Yêu cầu lệnh giao hàng;
+|H|
+:Gửi lệnh giao hàng;
+|V|
+:Kiểm tra số lượng hàng tồn kho;
+|K|
+:Thông tin mặt hàng;
+|V|
+:Trạng thái đơn hàng;
+|G|
+:Hiển thị thông tin giao hàng;
+|N|
+:Chuẩn bị các mặt hàng trong kho;
+|G|
+:Yêu cầu dự trữ hàng tồn kho;
+|V|
+:Chuẩn bị các mặt hàng trong kho;
+|K|
+:Xác nhận chuẩn bị các mặt hàng;
+|V|
+:Trạng thái hàng tồn kho;
+|G|
+:Hiển thị thông tin hàng tồn kho;
+|N|
+stop
+@enduml
+
+

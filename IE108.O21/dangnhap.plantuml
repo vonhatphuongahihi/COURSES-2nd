@@ -1,0 +1,26 @@
+Sequence diagram
+@startuml SequenceDiagram
+hide footbox
+actor "Người dùng" as User
+participant "Giao diện tương tác người dùng" as GDTT
+participant "Giao diện đăng nhập" as GDDN
+participant "Xử lý đăng nhập" as XLDN
+User -> GDTT : 1. Yêu cầu đăng nhập
+activate User
+activate GDTT
+GDTT -> GDDN: 2. Gọi giao diện đăng nhập
+activate GDDN
+GDDN-> GDTT : 3. Hiển thị giao diện đăng nhập
+deactivate GDDN
+GDTT -> User : 4. Giao diện đăng nhập
+deactivate GDTT
+User -> GDDN: 5. Nhập thông tin đăng nhập
+activate GDDN
+GDDN -> XLDN: 6. Kiểm tra đăng nhập
+activate XLDN
+XLDN -> XLDN: 7. Xác nhận đăng nhập
+XLDN -> GDDN: 8.1 Thực hiện đăng nhập
+XLDN -> GDDN: 8.2 Sai: Thông báo lỗi
+GDDN -> User: 9.1 Thông báo đăng nhập thành công
+GDDN -> User: 9.2 Hiển thị thông báo lỗi đăng nhập
+@enduml

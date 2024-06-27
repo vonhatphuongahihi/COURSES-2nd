@@ -1,0 +1,20 @@
+@startuml
+hide footbox
+actor "Người dùng" as User
+participant "Giao diện người dùng" as App
+database "Cơ sở dữ liệu phim" as DB
+
+User -> App: 1. Gửi yêu cầu truy vấn tìm kiếm phim
+activate User
+activate App
+App -> DB: 2. Tìm kiếm phim
+activate DB
+DB -> App: 3. Trả về kết quả tìm kiếm phim
+App -> User: 4. Hiển thị danh sách các phim 
+
+User -> App: 5. Chọn phim từ kết quả tìm kiếm
+App -> DB: 6. Lấy thông tin chi tiết về phim
+DB -> App: 7. Trả về thông tin chi tiết phim
+deactivate DB
+App -> User: 8. Hiển thị thông tin chi tiết phim
+@enduml

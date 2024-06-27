@@ -1,0 +1,32 @@
+@startuml
+hide footbox
+actor "Người dùng" as User
+participant "Giao diện người dùng" as Web
+participant "Dịch vụ xem phim" as Service
+database "Cơ sở dữ liệu phim" as DB
+
+User -> Web: 1. Gửi yêu cầu chọn phim
+activate User
+activate Web
+Web -> Service: 2. Yêu cầu chi tiết phim
+activate Service
+Service -> DB: 3. Truy vấn chi tiết phim
+activate DB
+DB -> Service: 4. Trả về chi tiết phim
+deactivate DB
+Service -> Web: 5. Hiển thị chi tiết phim
+deactivate Service
+Web -> User: 6. Hiển thị chi tiết phim
+
+User -> Web: 7. Yêu cầu xem phim
+Web -> Service: 8. Kiểm tra đăng nhập người dùng
+activate Service
+alt Đăng nhập hợp lệ
+  Service -> Web: 9. Cấp quyền truy cập vào phim
+  Web -> User: 10. Phát phim
+else Đăng nhập không hợp lệ
+  Service -> Web: 11. Từ chối truy cập vào phim
+  Web -> User: 12. Hiển thị tùy chọn đăng nhập
+end
+
+@enduml
