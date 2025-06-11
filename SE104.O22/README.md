@@ -1,4 +1,4 @@
-# SE104.O22 - Nhập Mông Công Nghệ Phần Mềm
+# SE104.O22 - Nhập Môn Công Nghệ Phần Mềm
 
 ## Thông tin môn học
 - **Giảng viên:** ThS. Đỗ Thị Thanh Tuyền
