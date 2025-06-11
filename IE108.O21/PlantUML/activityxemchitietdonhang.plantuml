@@ -1,0 +1,20 @@
+
+@startuml
+|K| Khách hàng
+|H| Hệ thống
+|K|
+start
+:Truy cập lịch sử đơn hàng;
+|H|
+:Hiển thị danh sách đơn hàng;
+|K|
+:Yêu cầu xem chi tiết một đơn hàng;
+|H|
+:Hiển thị thông tin chi tiết đơn hàng;
+|K|
+:Yêu cầu xem thông tin giao hàng;
+|H|
+:Hiển thị thông tin giao hàng;
+stop
+@enduml
+

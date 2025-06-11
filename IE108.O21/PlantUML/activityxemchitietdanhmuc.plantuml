@@ -1,0 +1,35 @@
+
+@startuml
+|K| Khách hàng
+|V| Điều phối viên
+|D| Dịch vụ danh mục khách hàng
+|G| Giao diện tương tác khách hàng
+|K|
+start
+:Yêu cầu xem danh mục mặt hàng;
+|V|
+:Hỗ trợ khách hàng;
+:Chọn danh mục mặt hàng để khách hàng xem qua;
+:Yêu cầu thông tin;
+|D|
+:Gửi thông tin;
+|V|
+:Chuyển tiếp thông tin;
+|G|
+:Hiển thị thông tin danh mục;
+|K|
+:Lựa chọn danh mục mặt hàng;
+|G|
+:Chuyển yêu cầu;
+|V|
+:Yêu cầu lựa chọn dịch vụ danh mục mặt hàng;
+|D|
+:Gửi giá mặt hàng;
+|V|
+:Chuyển tiếp thông tin;
+|G|
+:Hiển thị thông tin danh mục;
+|K|
+stop
+
+

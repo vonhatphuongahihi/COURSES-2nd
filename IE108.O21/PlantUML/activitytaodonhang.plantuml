@@ -1,0 +1,38 @@
+@startuml
+|K| Khách hàng
+|V| Điều phối viên
+|D| Dịch vụ tài khoản
+|G| Giao diện tương tác khách hàng
+|H| Dịch vụ giao hàng
+|T| Dịch vụ thẻ tín dụng
+|K|
+start
+:Yêu cầu đặt hàng;
+|G|
+:Yêu cầu đặt hàng;
+|V|
+:Gửi yêu cầu tài khoản;
+|D|
+:Nhận thông tin tài khoản;
+|V|
+:Thông tin thẻ tín dụng yêu cầu ủy quyền tính phí;
+|T|
+:Phê duyệt ủy quyền thẻ tín dụng;
+|V|
+:Yêu cầu đặt hàng;
+|H|
+:Xác nhận thông tin giao hàng;
+|V|
+fork
+    :Gửi email xác nhận đơn hàng;
+    |V|
+fork again
+   :Xác nhận đơn hàng;
+end fork
+|G|
+:Xuất xác nhận đơn hàng;
+|K|
+stop
+@enduml
+
+

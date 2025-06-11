@@ -1,0 +1,7 @@
+Cài đặt Node.js và npm: npm đi kèm
+Cài đặt jest trong thư mục trong Visual Studio:  npm install --save-dev jest
+Tạo file package.json trong VS Code: npm init -y
+Mở file package.json và sửa đoạn: "scripts": {
+    "test": "jest"
+  }
+Chạy các test: npm test

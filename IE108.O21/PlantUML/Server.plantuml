@@ -1,0 +1,40 @@
+@startuml SequenceDiagram
+hide footbox
+actor "ATM Customer" as Customer
+participant "Trình quản lý giao dịch" as TM
+participant "Thẻ ghi nợ" as Card
+participant "Tài khoản thẻ" as Account
+participant ATM
+
+Customer -> TM: V1. Yêu cầu "Xác thực mã PIN"
+activate TM
+
+TM -> Card: V2. Thông báo "Xác thực" (ID thẻ, mã PIN)
+deactivate TM
+activate Card
+
+
+Card -> Card: V3a. Kiểm tra mã PIN, trạng thái thẻ, hạn sử dụng
+
+Card -> TM: V3b. Phản hồi "Mã PIN hợp lệ" (nếu thẻ vượt qua kiểm tra)
+deactivate Card
+activate TM
+
+
+TM -> Account: V4.  Yêu cầu trả lại số tài khoản
+deactivate TM
+activate Account
+
+
+Account -> Account: V5. Trả lại số tài khoản hợp lệ
+
+activate TM
+deactivate Account
+
+TM -> TM: V6. Ghi nhật ký giao dịch
+
+TM -> ATM: V7. Phản hồi "Mã PIN hợp lệ" (để gửi số tài khoản)
+deactivate TM
+activate ATM
+
+@enduml

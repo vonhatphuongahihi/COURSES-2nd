@@ -1,0 +1,11 @@
+@startuml
+
+  [*] --> Chờ_lựa_chọn_của_khách_hàng
+  Chờ_lựa_chọn_của_khách_hàng --> Đang_xử_lý_rút_tiền: 3.3 Gửi yêu cầu "Rút tiền"
+  Đang_xử_lý_rút_tiền--> Phân_phối_tiền_mặt: 3.5 Gửi phản hồi phê duyệt rút tiền (số tiền, số dư)
+  Phân_phối_tiền_mặt --> In_biên_lai: 3.10 Gửi thông báo "Đã phân phối tiền mặt"
+  In_biên_lai --> Đẩy_thẻ_ra: 3.15 Đã in biên lai
+  Đẩy_thẻ_ra --> Đã_kết_thúc: 3.18 Gửi thông báo "Đã đẩy thẻ ra"
+  Đã_kết_thúc --> [*]
+
+@enduml

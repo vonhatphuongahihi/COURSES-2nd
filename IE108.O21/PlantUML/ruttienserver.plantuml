@@ -1,0 +1,37 @@
+@startuml SequenceDiagram
+hide footbox
+actor "ATM Customer" as Customer
+participant "Trình quản lý giao dịch" as TM
+participant "Thẻ ghi nợ" as Card
+participant "Tài khoản" as Account
+
+Customer -> TM: W1. Yêu cầu "Rút tiền"
+activate Customer
+
+activate TM
+
+TM -> Card: W2. Kiểm tra giới hạn rút tiền hàng ngày (ID thẻ, số tiền)
+activate Card
+
+Card -> TM: W3. Phản hồi về số tiền được phép rút
+deactivate Card
+
+TM -> Account: W4. Yêu cầu ghi nợ tài khoản nếu có đủ tiền trong tài khoản
+deactivate TM
+activate Account
+
+
+Account -> TM: W5. Phê duyệt rút tiền (số tiền, số dư) hoặc từ chối rút tiền
+activate TM
+deactivate Account
+
+TM -> Card: W6. Cập nhật tổng tiền hàng ngày (ID thẻ, số tiền)
+activate Card
+
+TM -> TM: W7. Ghi nhật ký giao dịch
+ 
+TM -> Customer: W8. Thông báo "Phê duyệt rút tiền (số tiền, số dư)" hoặc từ chối rút tiền
+deactivate TM
+deactivate Customer
+deactivate Card
+@enduml

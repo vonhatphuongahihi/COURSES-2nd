@@ -1,0 +1,45 @@
+@startuml
+
+[*] --> Chờ_Xử_Lý_Thành_Viên
+
+state Chờ_Xử_Lý_Thành_Viên {
+    [*] --> Đặt_Chỗ
+    Đặt_Chỗ --> Thông_Báo_Đặt_Chỗ : Khi có xe sẵn
+    Đặt_Chỗ --> Cần_Gia_Hạn : Khi không có xe sẵn trong 1 tuần
+    Thông_Báo_Đặt_Chỗ --> Giao_Xe : Trợ lý thông báo thành viên
+    Cần_Gia_Hạn --> Liên_Hệ_Thành_Viên : Thành viên liên hệ
+    Liên_Hệ_Thành_Viên --> Đặt_Chỗ : Nếu thành viên yêu cầu gia hạn
+    Liên_Hệ_Thành_Viên --> Hủy_Đặt_Chỗ : Nếu thành viên hủy đặt chỗ hoặc không liên lạc được
+    Hủy_Đặt_Chỗ --> Kết_Thúc : Nếu thành viên hủy đặt chỗ
+    Hủy_Đặt_Chỗ --> Đặt_Xe_Trong : Nếu không liên lạc được
+    Giao_Xe --> Nhận_Xe : Thành viên đến nhận xe
+    Nhận_Xe --> Kết_Thúc : Thành viên nhận xe
+    Nhận_Xe --> Đặt_Xe_Trong : Không nhận xe
+    Đặt_Xe_Trong --> Kết_Thúc : Sau khi xe đã được đưa trở lại khu vực trưng bày
+}
+
+state Cần_Gia_Hạn {
+    [*] --> Liên_Hệ_Thành_Viên
+}
+
+[*] --> Hủy_Đặt_Chỗ
+
+state Hủy_Đặt_Chỗ {
+    [*] --> Internet
+    Internet --> Đặt_Xe_Trong : Hủy đặt chỗ qua Internet
+    Điện_Thoại --> Đặt_Xe_Trong : Hủy đặt chỗ qua điện thoại
+    Trực_Tiếp --> Đặt_Xe_Trong : Hủy đặt chỗ trực tiếp
+}
+
+state Kết_Thúc {
+    [*] --> Đặt_Xe_Trong
+}
+
+state Đặt_Xe_Trong {
+    [*] --> Internet
+    Internet --> Hủy_Đặt_Chỗ : Hủy đặt chỗ qua Internet
+    Điện_Thoại --> Hủy_Đặt_Chỗ : Hủy đặt chỗ qua điện thoại
+    Trực_Tiếp --> Hủy_Đặt_Chỗ : Hủy đặt chỗ trực tiếp
+}
+
+@enduml

@@ -1,0 +1,60 @@
+Sequence diagram
+@startuml SequenceDiagram
+hide footbox
+actor "ATM Customer" as Customer
+participant "<<external I/O device>>\n:CardReader" as CardReader
+participant "<<entity>>\n:ATMCard" as ATMCard
+participant "<<user interaction>>\n:CustomerInteraction" as UserInteraction
+participant "<<state dependent control>>\n:ATMControl" as ATMControl
+participant "<<entity>>\n:ATMTransaction" as ATMTransaction
+participant "<<subsystem>>\n:BankingService" as BankingService
+
+Customer -> CardReader : 1. Card Reader Input
+activate CardReader
+
+CardReader -> ATMCard : 1.1. Card Id,\nStart Date, Expiration Date
+activate ATMCard
+deactivate ATMCard
+
+CardReader -> ATMControl : 1.2. Card Inserted 
+activate ATMControl
+deactivate CardReader
+
+ATMControl -> UserInteraction : 1.3. Get PIN
+activate UserInteraction
+deactivate ATMControl
+
+UserInteraction -> Customer : 1.4. PIN Prompt
+activate Customer
+
+Customer -> UserInteraction : 2. PIN Input
+
+UserInteraction -> ATMCard : 2.1. Card Request
+activate ATMCard
+
+ATMCard -> UserInteraction : 2.2. Provide Card Information
+deactivate ATMCard
+
+UserInteraction -> ATMTransaction : 2.3. Card Id, Start Date, Expiration Date, PIN
+activate ATMTransaction
+
+ATMTransaction -> UserInteraction : 2.4. PIN Validation Transaction
+deactivate ATMTransaction
+
+UserInteraction -> ATMControl : 2.5. PIN Entered
+activate ATMControl
+
+ATMControl -> BankingService : 2.6. Validate PIN
+activate BankingService
+
+BankingService -> ATMControl : 2.7. [Valid]: Valid PIN
+deactivate BankingService
+
+ATMControl -> UserInteraction : 2.8. Display menu
+ATMControl -> ATMTransaction : 2.8a. Update status
+activate ATMTransaction
+deactivate ATMControl
+deactivate ATMTransaction
+
+UserInteraction -> Customer : 2.9. Selection Menu
+@enduml

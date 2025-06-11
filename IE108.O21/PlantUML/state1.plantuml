@@ -1,0 +1,9 @@
+@startuml
+
+  [*] --> Không_hoạt_động
+  Không_hoạt_động --> Chờ_nhập_mã_PIN: 1.2_Đã_lắp_thẻ
+  Chờ_nhập_mã_PIN --> Đang_xác_thực_mã_PIN: 2.5_Đã_nhập_mã_PIN
+  Đang_xác_thực_mã_PIN --> Chờ_lựa_chọn_của_khách_hàng: 2.7_Mã_PIN_hợp_lệ
+  Chờ_lựa_chọn_của_khách_hàng --> [*]
+
+@enduml

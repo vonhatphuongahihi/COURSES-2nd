@@ -1,0 +1,11 @@
+@startuml
+|N| Nhà cung cấp
+|H| Hệ thống
+|N|
+start
+:Chuẩn bị đơn hàng;
+:Xác nhận đơn hàng đã sẵn sàng vận chuyển;
+|H|
+:Truy xuất chi tiết thẻ tín dụng khách hàng;
+:Lập hóa đơn;
+stop

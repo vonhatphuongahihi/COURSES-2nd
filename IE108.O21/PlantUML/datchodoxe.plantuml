@@ -1,0 +1,42 @@
+Sequence diagram
+@startuml SequenceDiagram
+hide footbox
+actor "Khách hàng" as Customer
+participant "Giao diện tương tác khách hàng" as GDTT
+participant "Điều phối viên khách hàng" as DPV
+participant "Dịch vụ tài khoản" as DVTK 
+participant "Dịch vụ thẻ tín dụng, ví điện tử" as DVTD 
+participant "Dịch vụ email" as Email
+
+
+Customer -> GDTT : U1. Yêu cầu đặt chỗ đỗ xe
+activate Customer
+activate GDTT
+GDTT -> DPV: U2. Yêu cầu đặt chỗ đỗ xe
+activate DPV
+
+
+DPV -> DVTK : U3. Yêu cầu tài khoản
+activate DVTK
+
+DVTK -> DPV : U4. Thông tin tài khoản
+deactivate DVTK
+
+DPV -> DVTD : U5. Thông tin thẻ tín dụng, ví điện tử, yêu cầu ủy quyền tính phí
+activate DVTD
+
+DVTD -> DPV: U6. Phê duyệt quyền thẻ tín dụng, ví điện tử
+deactivate DVTD
+
+DPV -> GDTT: U7. Xác nhận đơn đặt chỗ
+DPV-> Email: U7a. Gửi email xác nhận đơn đặt chỗ 
+deactivate DPV
+activate Email
+deactivate Email
+
+
+GDTT -> Customer: U8. Xuất xác nhận đơn đặt chỗ
+deactivate GDTT
+deactivate Customer
+
+@enduml

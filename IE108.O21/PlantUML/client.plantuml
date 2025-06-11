@@ -1,0 +1,118 @@
+Sequence diagram
+@startuml SequenceDiagram
+hide footbox
+actor "ATM Customer" as Customer
+participant "Giao diện tương tác khách hàng" as GDTT
+participant "Trình giao dịch ATM" as TGD
+participant "Trình kiểm soát ATM" as TKS 
+participant "Dịch vụ ngân hàng" as DV  
+participant "Trình phân phối tiền mặt" as TPP
+participant "Trình rút tiền mặt" as TRT
+participant "Thiết bị đầu ra" as TB 
+participant "Mãy in biên lai" as Mayin 
+participant "Đầu đọc thẻ" as The
+participant "Thiết bị vào/ra đầu đọc thẻ" as TBVR
+Customer -> GDTT : 3. Rút tiền
+activate GDTT
+
+GDTT -> TGD : 3.1 Lựa chọn của khách hàng
+deactivate GDTT
+activate TGD
+
+
+TGD -> GDTT : 3.2 Thông tin chi tiết về giao dịch rút tiền
+activate GDTT
+deactivate TGD
+
+GDTT -> TKS : 3.3 Yêu cầu rút tiền
+deactivate GDTT
+activate TKS
+
+TKS -> DV : 3.4 Giao dịch "Yêu cầu rút tiền" có chứa thông tin giao dịch
+activate DV
+TKS -> GDTT : 3.4a Hiển thị giao diện chờ
+deactivate TKS
+activate GDTT
+
+GDTT -> Customer : 3.4a.1 Hiển thị thông báo chờ
+deactivate GDTT
+activate Customer 
+deactivate Customer
+
+DV -> TKS : 3.5 Phản hồi phê duyệt rút tiền (số tiền, số dư)
+deactivate DV
+activate TKS
+
+TKS -> TPP : 3.6 Phân phối tiền mặt (số tiền)
+activate TPP
+
+
+TKS -> TGD : 3.6a Cập nhật trạng thái (số tiền, số dư)
+deactivate TKS
+activate TGD
+
+
+TPP -> TRT : 3.7 Thông báo Rút tiền (số tiền)
+deactivate TGD
+deactivate TPP
+activate TRT
+
+
+TRT -> TPP : 3.8 Phản hồi rút tiền
+deactivate TRT
+activate TPP
+
+TPP -> TB: 3.9 Phân phối tiền ra ngoài
+activate TB
+deactivate TB
+
+TPP -> TKS : 3.10 Đã phân phối tiền mặt
+deactivate TPP
+activate TKS
+
+TKS -> Mayin : 3.11 In biên lai
+activate Mayin
+TKS -> GDTT : 3.11a Hiển thị tiền mặt đã phân phối
+activate GDTT
+GDTT -> Customer : 3.11a.1 Lời nhắc "Phân phối tiền mặt"
+deactivate GDTT
+TKS -> DV : 3.11b Xác nhận đã phân phối tiền mặt
+deactivate TKS
+activate DV
+
+Mayin -> TGD : 3.12 Yêu cầu dữ liệu giao dịch
+deactivate DV
+activate TGD
+
+TGD -> Mayin : 3.13 Gửi dữ liệu giao dịch
+deactivate TGD
+
+Mayin -> TB : 3.14 Thông tin biên lai
+activate TB
+deactivate TB
+
+Mayin -> TKS : 3.15 Đã in biên lai
+deactivate Mayin
+activate TKS
+
+TKS -> The : 3.16 Đẩy thẻ ra
+deactivate TKS
+activate The
+
+The -> TBVR : 3.17 Thông tin thẻ cần đẩy ra
+activate TBVR
+deactivate TBVR
+
+The -> TKS : 3.18 Đã đẩy thẻ ra
+deactivate The
+activate TKS
+
+TKS -> GDTT : 3.19 Hiển thị thẻ đã được đẩy ra
+deactivate TKS
+activate GDTT
+
+GDTT -> Customer : 3.20 Lời nhắc "Đã đẩy thẻ ra"
+deactivate GDTT
+deactivate Customer
+
+@enduml
