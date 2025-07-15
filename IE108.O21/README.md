@@ -9,7 +9,6 @@
 ## Thành viên nhóm
 - **Võ Nhất Phương** - 22521172
 - **Hoàng Gia Minh** - 22520861
-- 
 
 ## Mô tả
 Thư mục này chứa các tài liệu, bài tập và báo cáo cho môn học Phân tích thiết kế phần mềm (IE108.O21) tại trường Đại học Công nghệ Thông tin ĐHQG-HCM.
